@@ -1,0 +1,25 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "description": "backend for shopify backend intern developer challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shashanka-Sharma/Logistics-Tracker.git"
+  },
+  "author": "shashanka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shashanka-Sharma/Logistics-Tracker/issues"
+  },
+  "homepage": "https://github.com/Shashanka-Sharma/Logistics-Tracker#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
