@@ -11,7 +11,7 @@ function App() {
       if (warehouseName) {
         // first get all the warehouse names in the database
         console.log(`warehouseName exists: ${warehouseName}`)
-        const res = await axios.post(`${REACT_APP_BACKEND_URL}/warehouse/create`, warehouseName)
+        const res = await axios.post(`${REACT_APP_BACKEND_URL}/warehouse/create`, {name : warehouseName})
         if(res.data.success) {
           console.log("the axios post was successful")
         }
