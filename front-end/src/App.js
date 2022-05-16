@@ -6,10 +6,15 @@ function App() {
 
     async function handleCreateWarehouse() {
       let warehouseName = prompt("Please enter a location of a warehouse.")
+      console.log("Someone clicked created warehouse");
       
       if (warehouseName) {
         // first get all the warehouse names in the database
+        console.log(`warehouseName exists: ${warehouseName}`)
         const res = await axios.post(`${REACT_APP_BACKEND_URL}/warehouse/create`, warehouseName)
+        if(res.data.success) {
+          console.log("the axios post was successful")
+        }
         // if doesn't exist :
           // axios post 
         // else :

@@ -6,12 +6,14 @@ const Warehouse = require('../../models/Warehouse');
 
 router.post('/create', async (res, req) => {
     try {
-        const warehouse = new Warehouse({
+        const warehouses = new Warehouse({
             location: req.body.name
         });
-        await warehouse.save()
+        await warehouses.save()
         res.json({success: true});
+        console.log("warehouse post was successful")
     } catch (err) {
+        console.log("warehouse post failed")
         res.status(500).json({success: false, error: 'Server error'});
     }
 })
