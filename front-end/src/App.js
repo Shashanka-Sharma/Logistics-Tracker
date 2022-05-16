@@ -1,9 +1,20 @@
 import './App.css';
+import axios from 'axios';
 
 function App() {
+  const REACT_APP_BACKEND_URL = 'http://localhost:4000';
+
     async function handleCreateWarehouse() {
       let warehouseName = prompt("Please enter a location of a warehouse.")
-      // axios post request
+      
+      if (warehouseName) {
+        // first get all the warehouse names in the database
+        const res = await axios.post(`${REACT_APP_BACKEND_URL}/warehouse/create`, warehouseName)
+        // if doesn't exist :
+          // axios post 
+        // else :
+          // console.log("error")
+      }
     }
 
     async function handleCreateInventory() {
@@ -11,6 +22,18 @@ function App() {
       // add a check to see if inventory already exists or not
       let quantity = prompt(`Please enter a quantity of ${inventoryName}`)
       // axios post request
+      if (inventoryName) {
+        if (quantity > 0) {
+          // axios.get from database
+          // if doesn't exist :
+            // axios post 
+         // else :
+            // console.log("error")
+        }
+        else {
+          console.log("Please input a valid quantity")
+        }
+      }
     }
 
     async function handleAddInventory() {
