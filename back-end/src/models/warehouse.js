@@ -4,6 +4,6 @@ const warehouseSchema = mongoose.Schema({
     location: String
 })
 
-const Warehouse = mongoose.model('Warehouse', warehouseSchema);
+const Warehouse = mongoose.model('warehouses', warehouseSchema);
 
 module.exports = Warehouse;
