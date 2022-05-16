@@ -20,9 +20,10 @@ const cors = require('cors');
 // database
 const mongoose = require('mongoose');
 mongoDB_password = 'apPYSmCgu5m8O6u6'
+mongoDB_name = 'ShopifyLogisticsTracker'
 
 // connect to database
-mongoose.connect(`mongodb+srv://shankSauce2023:${mongoDB_password}@cluster0.sqeyv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://shankSauce2023:${mongoDB_password}@cluster0.sqeyv.mongodb.net/${mongoDB_name}?retryWrites=true&w=majority`)
     .then( () => {
         console.log('Connected to database ');
     })
