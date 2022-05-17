@@ -4,8 +4,8 @@ import axios from 'axios';
 
 function App() {
   const REACT_APP_BACKEND_URL = 'http://localhost:4000';
-  const [locationData, setLocationData] = useState(null);
-  const [inventoryData, setInventoryData] = useState(null);
+  const [locationData, setLocationData] = useState({});
+  const [inventoryData, setInventoryData] = useState({});
 
   useEffect(() => {
     async function getWarehouses() {
@@ -78,7 +78,7 @@ function App() {
 
     async function handleDeleteInventory() {
       let inventoryName = prompt("Please enter an existing inventory item you wish to delete.")
-      // add a check to see if inventory already exists or not
+
       const res = axios.post(`${REACT_APP_BACKEND_URL}/inventory/delete`, {name: inventoryName});
       if(res.data.success) {
           console.log("the axios post was successful")
@@ -89,7 +89,23 @@ function App() {
     async function handleAssignInventory() {
       let inventoryName = prompt("Please enter an existing inventory item you wish to assign.")
       let assignInventory = prompt(`Please enter a warehouse location to assign ${inventoryName} to.` )
-      // add a check to see if inventory already exists or not
+      let exists = false;
+
+      for (var i = 0; i < locationData.length; i++) {
+        if (locationData[i].location == assignInventory) {
+          console.log(`${assignInventory} exists in database`)
+          exists = true;
+          break
+        }
+      }
+      if (!exists) {
+        console.log(`${assignInventory} does not exist in database`)
+      } else {
+        const res = axios.post(`${REACT_APP_BACKEND_URL}/inventory/assign`, {name: inventoryName, warehouse: assignInventory})
+        if (res.data.success) {
+          console.log('the axios post was successful');
+        }
+      }
     }
     
     return (

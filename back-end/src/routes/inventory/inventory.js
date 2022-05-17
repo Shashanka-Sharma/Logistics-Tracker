@@ -61,6 +61,26 @@ router.post('/delete', async (req, res) => {
         res.status(500).json({success: false, error: 'Server error'});
 
     }
+});
+
+router.post('/assign', async (req, res) => {
+    const itemName = req.body.name;
+    const assignment = req.body.warehouse;
+
+    try {
+        let item = await Inventory.findOne({name: itemName});
+
+        if (item) {
+            item.warehouse = assignment;
+        }
+        item.markModified('warehouse');
+        item.save();
+        res.json({success: true});
+    } catch (err) {
+        console.log('Error editing item');
+        console.log(err);
+        res.status(500).json({success: false, error: 'Server error'});
+    }
 })
 
 
