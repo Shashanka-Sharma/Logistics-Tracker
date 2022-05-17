@@ -25,10 +25,7 @@ router.post('/create', async (req, res) => {
 
 router.get('/getWarehouse', async (req, res) => {
     const allWarehouses = await Warehouse.find();
-    console.log(Object.keys(allWarehouses).length)
-    // console.log(allWarehouses)
-    res.json({success: true, warehouses: allWarehouses});
-    
+    res.json({success: true, warehouses: allWarehouses});  
 });
 
 

@@ -81,6 +81,11 @@ router.post('/assign', async (req, res) => {
         console.log(err);
         res.status(500).json({success: false, error: 'Server error'});
     }
+});
+
+router.get('/getInventory', async (req, res) => {
+    const allInventory = await Inventory.find();
+    res.json({success: true, inventories: allInventory});
 })
 
 

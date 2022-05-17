@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     async function getWarehouses() {
-      try{
+      try {
         const res = await axios.get(`${REACT_APP_BACKEND_URL}/warehouse/getWarehouse`)
         const data = res.data.warehouses;
         setLocationData(data)
@@ -18,7 +18,18 @@ function App() {
         console.log(err);
       }
     };
+    async function getInventories() {
+      try {
+        const res = await axios.get(`${REACT_APP_BACKEND_URL}/inventory/getInventory`)
+        const data = res.data.inventories;
+        setInventoryData(data)
+      } catch (err) {
+        console.log("error trying to get inventories");
+        console.log(err);
+      }
+    };
     getWarehouses();
+    getInventories();
   }, []);
 
     async function handleCreateWarehouse() {
