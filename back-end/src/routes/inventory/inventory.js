@@ -25,6 +25,42 @@ router.post('/create', async (req, res) => {
             res.status(500).json({success: false, error: 'Server error'});
         }
     }
+});
+
+router.post('/update', async (req, res) => {
+    const itemName = req.body.name;
+    let itemQuantity = parseInt(req.body.amount);
+
+    try {
+        const item = await Inventory.findOne({name: itemName});
+        if (item) {
+            item.quantity += itemQuantity;
+        }
+        if (item.quantity < 0) {
+            item.quantity = 0;
+        }
+        item.markModified('quantity');
+        item.save();
+        res.json({success: true});
+    } catch (err) {
+        console.log('Error editing item');
+        console.log(err);
+        res.status(500).json({success: false, error: 'Server error'});
+    }
+});
+
+router.post('/delete', async (req, res) => {
+    const itemName = req.body.name;
+
+    try {
+        await Inventory.findOneAndDelete({name: itemName})
+        item.save();
+    } catch (err) {
+        console.log('Error editing item');
+        console.log(err);
+        res.status(500).json({success: false, error: 'Server error'});
+
+    }
 })
 
 

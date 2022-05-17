@@ -1,39 +1,48 @@
 import './App.css';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 
 function App() {
   const REACT_APP_BACKEND_URL = 'http://localhost:4000';
+  const [locationData, setLocationData] = useState(null);
+  const [inventoryData, setInventoryData] = useState(null);
+
+  useEffect(() => {
+    async function getWarehouses() {
+      try{
+        const res = await axios.get(`${REACT_APP_BACKEND_URL}/warehouse/getWarehouse`)
+        const data = res.data.warehouses;
+        setLocationData(data)
+      } catch (err) {
+        console.log("error trying to get warehouses");
+        console.log(err);
+      }
+    };
+    getWarehouses();
+  }, []);
 
     async function handleCreateWarehouse() {
-      let warehouseName = prompt("Please enter a location of a warehouse.")
-      console.log("Someone clicked created warehouse");
-      
+      let warehouseName = prompt("Please enter a location of a warehouse.");
+
       if (warehouseName) {
-        // first get all the warehouse names in the database
-        console.log(`warehouseName exists: ${warehouseName}`)
-        const res = await axios.post(`${REACT_APP_BACKEND_URL}/warehouse/create`, {name : warehouseName})
+        const res = await axios.post(`${REACT_APP_BACKEND_URL}/warehouse/create`, {name: warehouseName})
         if(res.data.success) {
           console.log("the axios post was successful")
         }
-        // if doesn't exist :
-          // axios post 
-        // else :
-          // console.log("error")
       }
     }
 
     async function handleCreateInventory() {
       let inventoryName = prompt("Please enter a new inventory item") 
-      // add a check to see if inventory already exists or not
       let quantity = prompt(`Please enter a quantity of ${inventoryName}`)
-      // axios post request
+
       if (inventoryName) {
         if (quantity > 0) {
-          // axios.get from database
-          // if doesn't exist :
-            // axios post 
-         // else :
-            // console.log("error")
+          console.log(`Attemting to add ${inventoryName} with quantity ${quantity}`)
+          const res = await axios.post(`${REACT_APP_BACKEND_URL}/inventory/create`, {name: inventoryName, amount: quantity})
+          if(res.data.success) {
+            console.log("the axios post was successful")
+          }
         }
         else {
           console.log("Please input a valid quantity")
@@ -43,21 +52,38 @@ function App() {
 
     async function handleAddInventory() {
       let inventoryName = prompt("Please enter an existing inventory item you wish to add.")
-      // add a check to see if inventory already exists or not
       let quantity = prompt(`Please enter a quantity of ${inventoryName} you wish to add.`)
-  
+
+      if (quantity > 0) {
+        const res = axios.post(`${REACT_APP_BACKEND_URL}/inventory/update`, {name: inventoryName, amount: quantity});
+        if(res.data.success) {
+          console.log("the axios get was successful")
+        }
+      }
     }
 
     async function handleDropInventory() {
       let inventoryName = prompt("Please enter an existing inventory item you wish to drop.")
-      // add a check to see if inventory already exists or not
       let quantity = prompt(`Please enter a quantity of ${inventoryName} you wish to drop.`)
+
+      if (quantity > 0) {
+        quantity *= -1
+        const res = axios.post(`${REACT_APP_BACKEND_URL}/inventory/update`, {name: inventoryName, amount: quantity});
+        if(res.data.success) {
+          console.log("the axios get was successful")
+        }
+      }
 
     }
 
     async function handleDeleteInventory() {
       let inventoryName = prompt("Please enter an existing inventory item you wish to delete.")
       // add a check to see if inventory already exists or not
+      const res = axios.post(`${REACT_APP_BACKEND_URL}/inventory/delete`, {name: inventoryName});
+      if(res.data.success) {
+          console.log("the axios post was successful")
+        }
+
     }
 
     async function handleAssignInventory() {
