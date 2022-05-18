@@ -7,11 +7,18 @@ Shopify Developer Intern challenge Fall 2022
 3. This requires ```two shells open simultaneously```. 
 4. The preferred application to run this is ```VSCode```.
 ## Frontend React App
+1. Navigate to ```shopifyBackendChallenge``` directory.
+2. Run the bash command in a linux bash terminal ```bash backend.sh```
+3. If not done automatically, access the app using a browser at ```localhost:3000```
+## Backend Express App
+1. Navigate to ```shopifyBackendChallenge``` directory.
+2. Run the bash command in a linux bash terminal ```bash backend.sh```
+### Alternative Frontend Method (non-Bash)
 1. Navigate to ```front-end``` directory
 2. Install front-end dependencies with ```npm install```
 3. Launch the front-end with ```npm start```
 4. If not done automatically, access the app using a browser at ```localhost:3000```
-## Backend Express App
+### Alternative Backend Method (non-Bash)
 1. Navigate to ```back-end``` directory
 2. Install back-end dependencies with ```npm install```
 3. Install `nodemon` globally with ```npm install -g nodemon```
