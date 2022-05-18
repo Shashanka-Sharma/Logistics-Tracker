@@ -1,11 +1,19 @@
 import './App.css';
 import {useState, useEffect} from 'react';
 import axios from 'axios';
+import Table from './components/Table';
 
 function App() {
   const REACT_APP_BACKEND_URL = 'http://localhost:4000';
-  const [locationData, setLocationData] = useState({});
-  const [inventoryData, setInventoryData] = useState({});
+  const [locationData, setLocationData] = useState([]);
+  const [inventoryData, setInventoryData] = useState([]);
+  const [dataTable, setDataTable] = useState([]);
+
+  const column = [
+    {heading: 'Inventory', value: 'name'},
+    {heading: 'Quantity', value: 'quantity'},
+    {heading: 'Warehouse', value: 'warehouse'}
+  ];
 
   useEffect(() => {
     async function getWarehouses() {
@@ -18,19 +26,27 @@ function App() {
         console.log(err);
       }
     };
+    getWarehouses();
+  }, []);
+
+  useEffect(() => {
     async function getInventories() {
       try {
         const res = await axios.get(`${REACT_APP_BACKEND_URL}/inventory/getInventory`)
         const data = res.data.inventories;
         setInventoryData(data)
+        setDataTable(inventoryData);
       } catch (err) {
         console.log("error trying to get inventories");
         console.log(err);
       }
     };
-    getWarehouses();
     getInventories();
   }, []);
+
+  useEffect(() => {
+    setDataTable(inventoryData);
+  }, [inventoryData])
 
     async function handleCreateWarehouse() {
       let warehouseName = prompt("Please enter a location of a warehouse.");
@@ -84,7 +100,6 @@ function App() {
           console.log("the axios get was successful")
         }
       }
-
     }
 
     async function handleDeleteInventory() {
@@ -94,7 +109,6 @@ function App() {
       if(res.data.success) {
           console.log("the axios post was successful")
         }
-
     }
 
     async function handleAssignInventory() {
@@ -123,7 +137,7 @@ function App() {
       <div className= "App">
         <div className = 'Header'>
           <h1>
-            Shopify Logistics Tracker Web Application
+            Shopify Logistics Tracker
           </h1>
         </div>
         <div className='CreateFunctions'>
@@ -139,37 +153,10 @@ function App() {
         </div>
 
         <div className="inventoryDisplay">
-          <table className='table'>
-            <tr>
-              <th>Inventory</th>
-              <th>Quantity</th>
-              <th>Location</th>
-            </tr>
-
-            <tr>
-              <td>Cookies</td>
-              <td>3</td>
-              <td>ShopifyHQ</td>
-            </tr>
-
-            <tr>
-              <td>Apples</td>
-              <td>2</td>
-              <td>NYC</td>
-            </tr>
-
-            <tr>
-              <td>Oranges</td>
-              <td>50</td>
-              <td>California</td>
-            </tr>
-
-          </table>
+          <Table data={dataTable} column= {column}/>
         </div>
-
       </div>
     );
-
 }
 
 export default App;
