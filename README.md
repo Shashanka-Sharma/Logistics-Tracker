@@ -3,7 +3,9 @@ Shopify Developer Intern challenge Fall 2022
 # Building and Testing The Project
 ## Initial setup
 1. Clone the repository onto your local machine with ```git clone https://github.com/Shashanka-Sharma/Logistics-Tracker.git```
-2. This requires ```two shells open simultaneously```. 
+2. Ensure you have ```installed Node.js``` on your machine. The link is provided here ```https://nodejs.org/en/```
+3. This requires ```two shells open simultaneously```. 
+4. The preferred application to run this is ```VSCode```.
 ## Frontend React App
 1. Navigate to ```front-end``` directory
 2. Install front-end dependencies with ```npm install```
