@@ -1,6 +1,6 @@
 language = "bash"
 run = """
-      bash deploy.sh
+      bash backend.sh
     """
       
       

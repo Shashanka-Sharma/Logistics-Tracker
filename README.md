@@ -6,13 +6,10 @@ Shopify Developer Intern challenge Fall 2022
 2. Ensure you have ```installed Node.js``` on your machine. The link is provided here ```https://nodejs.org/en/```
 3. This requires ```two shells open simultaneously```. 
 4. The preferred application to run this is ```VSCode```.
-## Frontend React App
+## MERN Stack Application
 1. Navigate to ```shopifyBackendChallenge``` directory.
-2. Run the bash command in a linux bash terminal ```bash backend.sh```
+2. Run the bash command in a linux bash terminal ```bash deploy.sh```
 3. If not done automatically, access the app using a browser at ```localhost:3000```
-## Backend Express App
-1. Navigate to ```shopifyBackendChallenge``` directory.
-2. Run the bash command in a linux bash terminal ```bash backend.sh```
 ### Alternative Frontend Method (non-Bash)
 1. Navigate to ```front-end``` directory
 2. Install front-end dependencies with ```npm install```
