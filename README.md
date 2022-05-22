@@ -1,10 +1,11 @@
 # Logistics-Tracker
 Shopify Developer Intern challenge Fall 2022
+Please read Design.md for potential debugging tips and Replit configuration.
 # Building and Testing The Project
 ## Initial setup
 1. Clone the repository onto your local machine with ```git clone https://github.com/Shashanka-Sharma/Logistics-Tracker.git```
 2. Ensure you have ```installed Node.js``` on your machine. The link is provided here ```https://nodejs.org/en/```
-3. This requires ```two shells open simultaneously```. 
+3. The alternative method requires ```two shells open simultaneously```. 
 4. The preferred application to run this is ```VSCode```.
 ## MERN Stack Application
 1. Navigate to ```shopifyBackendChallenge``` directory.
