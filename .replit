@@ -1,0 +1,6 @@
+language = "bash"
+run = """
+      bash deploy.sh
+    """
+      
+      
