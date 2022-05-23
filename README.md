@@ -1,5 +1,9 @@
 # Logistics-Tracker
 Shopify Developer Intern challenge Fall 2022
+# Replit Link
+1. Access the back-end repl with ```https://logistics-tracker.shashankasharma.repl.co/```
+2. Access the front-end repl with ```https://logistics-tracker-1.shashankasharma.repl.co/```
+3. You must have ```both repl's open on your browser``` in order for the application to work.
 # Building and Testing The Project
 ## Initial setup
 1. Clone the repository onto your local machine with ```git clone https://github.com/Shashanka-Sharma/Logistics-Tracker.git```
